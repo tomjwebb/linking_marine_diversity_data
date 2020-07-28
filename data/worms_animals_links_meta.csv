@@ -1,0 +1,29 @@
+variable,class,n_obs,n_miss,pct_miss,Description,Notes
+valid_AphiaID,numeric,206849,0,0,WoRMS Aphia ID associated with valid taxon name,
+taxonID,character,206849,0,0,Full WoRMS taxon ID path for Aphia ID,
+scientificName,character,206849,0,0,Scientific Name (full binomial) as recorded in WoRMS,
+kingdom,character,206849,0,0,Taxonomic Kingdom,
+phylum,character,206849,0,0,Taxonomic Phylum,
+class,character,202778,4071,1.968102336,Taxonomic Class,
+order,character,198126,8723,4.217085894,Taxonomic Order,
+family,character,206313,536,0.259126223,Taxonomic Family,
+genus,character,206849,0,0,Taxonomic Genus,
+taxonRank,character,206849,0,0,Taxonomic rank,
+references,character,206849,0,0,WoRMS citation for taxon,
+isMarine,numeric,206849,0,0,Is the taxon known to occur in marine environments?,"Boolean: 1 = TRUE, 0 = FALSE, NA = Unknown"
+isFreshwater,numeric,113107,93742,45.31904916,Is the taxon known to occur in freshwater environments?,"Boolean: 1 = TRUE, 0 = FALSE, NA = Unknown"
+isTerrestrial,numeric,117961,88888,42.97240983,Is the taxon known to be terrestrial environments?,"Boolean: 1 = TRUE, 0 = FALSE, NA = Unknown"
+isExtinct,numeric,45180,161669,78.15797998,Is the taxon known to be extinct?,"Boolean: 1 = TRUE, 0 = FALSE, NA = Unknown"
+fg,character,176182,30667,14.82579079,Functional group as recorded in WoRMS attributes,"Values: benthos (N = 141467), birds (687), endobenthos (70), epibenthos (238), fish (18261), hyperbenthos (35), macro (57), macrobenthos (3483), macroplankton (1), mammals (192), meiobenthos (1162), meso (13), microbenthos (96), nekton (3399), neuston (13), not applicable (1165), reptiles (96), zooplankton (5747) NA (30667)"
+fg_larva,character,75424,131425,63.53668618,"Functional group of larva as recorded in WoRMS attributes, if provided","Values: benthos (1644) zooplankton (73780), NA (131425)"
+functional_group,character,206849,0,0,Functional group used in analysis,"Values: benthos (146551), birds (687), fish (18261), mammals (192), nekton (3399), other/unknown (31915), reptiles (96), zooplankton (5748)"
+functional_group2,character,206849,0,0,Functional group including Fishbase habitat affiliation for fish,"Values: bathydemersal (2218), bathypelagic (1392), benthopelagic (1574),Ê demersal (6248), fish_unspecified_habitat (693), pelagic-neritic (874), pelagic-oceanic (467), reef-associated (4795), benthos (146551), birds (687), mammals (192), nekton (3399), other/unknown (31915), reptiles (96), zooplankton (5748)"
+in_obis,numeric,206849,0,0,Does the species have occurrence records in OBIS?,"Boolean: 1 = TRUE, 0 = FALSE"
+OBIS,numeric,106213,100636,48.65191517,Number of occurrence records in OBIS,"NA = zero records, range: 1 to 1108463"
+in_genb,numeric,206849,0,0,Does the species have nucleotide sequence data in GenBank?,"Boolean: 1 = TRUE, 0 = FALSE"
+GenBank_nuc,numeric,36094,170755,82.5505562,Number of nucleotide sequences in GenBank,"NA = zero records, range: 1 to 2993848"
+GenBank_prot,numeric,36106,170743,82.54475487,Number of proteins in GenBank,"NA = no data, range: 0 to 204277"
+in_bold,character,206849,0,0,Does the species have a DNA barcode in BOLD?,"Boolean: 1 = TRUE, 0 = FALSE"
+Barcode_of_Life,numeric,28807,178042,86.07341587,Number of DNA barcodes in BOLD,"NA = no data, range: 0 to 1596"
+IUCN_redlist,character,13179,193670,93.62868566,Full IUCN Red List assessment category,"Values: CD (Conservation Dependent, N = 4), CR (Critically Endangered, 125), DD (Data Deficient, 2734), EN (Endangered, 227) EW (Extinct in the Wild, 1), EX (Extinct, 14), LC (Least Concern, 8940), NT (Near Threatened, 484), VU (Vulnerable, 650), NA (No Data, i.e. not assessed, 193670)"
+IUCN_cat,character,206849,0,0,Simplified IUCN Red List assessment category used in analysis,"Values: Data Deficient (2734), Not Assessed (193670), Not Threatened (LC + NT 9424), Threatened       (CD + CR + EN + EW + EX + VU, 1021)"

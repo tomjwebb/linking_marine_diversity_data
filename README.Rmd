@@ -1,0 +1,38 @@
+---
+title: "README"
+author: "Tom Webb"
+date: "28/07/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Linking dimensions of data on global marine animal diversity
+
+This is the code for reproducing the figures and analysis reported in Webb & Vanhoorne _Linking dimensions of data on global marine animal diversity_, Phil Trans R Soc B, doi: 10.1098/rstb.2019.0445
+
+First, load required packages (see bottom of this script for installed versions used):
+```{r, message = FALSE}
+library(tidyverse) # For data manipulation and plotting
+library(patchwork) # For multi-panel figure layouts
+library(broom) # For tidying model outputs
+library(ggmosaic) # For mosaic plots
+library(ggbeeswarm) # For beeswarm-style plots
+```
+
+
+## Reproducibility
+<details><summary>Reproducibility receipt</summary>
+```{r}
+## datetime
+Sys.time()
+
+## repository
+git2r::repository()
+
+## session info
+sessionInfo()
+```
+
