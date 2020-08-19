@@ -11,7 +11,7 @@ First, load required packages (see bottom of this script for installed
 versions used):
 
 ``` r
-library(tidyverse) # For data manipulation and plotting
+library(tidyverse) # For reading, manipulating and plotting data
 library(pscl) # For fitting hurdle models
 library(broom) # For tidying model outputs
 library(patchwork) # For multi-panel figure layouts
@@ -19,7 +19,24 @@ library(ggmosaic) # For mosaic plots
 library(ggbeeswarm) # For beeswarm-style plots
 ```
 
-Read in the main dataset - **NB add link to DOI version when available**
+The dataset used in this analysis is available under a Creative Commons
+Attribution 4.0 International License in the Marine Data Archive (MDA).
+The preferred route to access the data is via IMIS (Integrated Marine
+Inforamtion System), which provides full meta-data. The IMIS record for
+our dataset is here: <https://doi.org/10.14284/417> The code below uses
+the direct link to MDA to download and unzip the two component csv files
+into the data folder of this project directory: the full dataset and a
+second csv which provides a full description of each variable.
+
+``` r
+# download zipped data from MDA
+curl::curl_download(url = "https://mda.vliz.be/download.php?file=VLIZ_00000106_5f1ff6c0cf0a1110164358",
+                    destfile = "data/worms_animals_links.zip")
+# unzip
+unzip("data/worms_animals_links.zip", exdir = "data")
+```
+
+The main dataset can now be read in:
 
 ``` r
 worms_valid <- readr::read_csv("data/worms_animals_links.csv")
@@ -30,7 +47,7 @@ valid marine animal species. Variables are described fully in the meta
 data here:
 
 ``` r
-worms_valid_meta <- readr::read_csv("data/worms_animals_links_meta.csv")
+worms_valid_meta <- readr::read_csv("data/meta.csv")
 ```
 
 For each variable, this gives its class (`class`), the number of non-NA
@@ -162,7 +179,7 @@ panels:
 )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 This can then be saved in your required
 format:
@@ -297,7 +314,7 @@ S1:
 )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 And save to file:
 
@@ -556,7 +573,7 @@ Use `patchwork` to assemble Figure
 (coef_figs <- (in_obis_binomial | obis_n_empirical) / (in_gb_binomial | gb_n_empirical))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-39-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-40-1.png)<!-- -->
 
 And save to
 file:
@@ -617,7 +634,7 @@ Mosaic plot of all species:
 )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-43-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-44-1.png)<!-- -->
 
 Create a plot for the subset of species with a large number (\>100) of
 OBIS records:
@@ -637,7 +654,7 @@ OBIS records:
   )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-44-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-45-1.png)<!-- -->
 
 And the same for species with a large number of GenBank nucleotides:
 
@@ -656,7 +673,7 @@ And the same for species with a large number of GenBank nucleotides:
 )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-45-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-46-1.png)<!-- -->
 
 The final version of figure 3 was assembled and annotated offline from
 these three constituent panels, saved here:
@@ -722,7 +739,7 @@ file:
 (bold_iucn_obis <- iucn_n_obis / bold_n_obis)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-50-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-51-1.png)<!-- -->
 
 ``` r
 ggsave("figures/webb_phitrans_fig4.pdf", bold_iucn_obis, width = 10, height = 10)
@@ -739,7 +756,7 @@ ggsave("figures/webb_phitrans_fig4.pdf", bold_iucn_obis, width = 10, height = 10
 Sys.time()
 ```
 
-    ## [1] "2020-07-28 17:33:50 BST"
+    ## [1] "2020-08-19 16:51:30 BST"
 
 ``` r
 ## repository
@@ -748,7 +765,7 @@ git2r::repository()
 
     ## Local:    master /Users/tom/Google Drive/Linking and Enriching Marine Data/linking_marine_diversity_data
     ## Remote:   master @ origin (https://github.com/tomjwebb/linking_marine_diversity_data)
-    ## Head:     [4c72615] 2020-07-28: Updating readme
+    ## Head:     [24e3410] 2020-07-28: Adding all figure and analysis code to readme
 
 ``` r
 ## session info
@@ -779,16 +796,16 @@ sessionInfo()
     ##  [1] Rcpp_1.0.3         lubridate_1.7.4    lattice_0.20-38    assertthat_0.2.1  
     ##  [5] digest_0.6.24      R6_2.4.1           cellranger_1.1.0   plyr_1.8.5        
     ##  [9] backports_1.1.5    reprex_0.3.0       evaluate_0.14      httr_1.4.1        
-    ## [13] pillar_1.4.3       rlang_0.4.6        lazyeval_0.2.2     readxl_1.3.1      
-    ## [17] rstudioapi_0.10    data.table_1.12.8  rmarkdown_2.0      labeling_0.3      
-    ## [21] htmlwidgets_1.5.1  munsell_0.5.0      vipor_0.4.5        compiler_3.6.2    
-    ## [25] modelr_0.1.5       xfun_0.12          pkgconfig_2.0.3    htmltools_0.4.0   
-    ## [29] tidyselect_1.1.0   fansi_0.4.1        viridisLite_0.3.0  crayon_1.3.4      
-    ## [33] dbplyr_1.4.2       withr_2.1.2        MASS_7.3-51.4      grid_3.6.2        
-    ## [37] nlme_3.1-142       jsonlite_1.6.1     gtable_0.3.0       lifecycle_0.2.0   
-    ## [41] DBI_1.1.0          git2r_0.26.1       magrittr_1.5       scales_1.1.0      
-    ## [45] cli_2.0.1          stringi_1.4.6      farver_2.0.3       fs_1.3.1          
-    ## [49] xml2_1.2.2         ellipsis_0.3.0     generics_0.0.2     vctrs_0.3.1       
-    ## [53] tools_3.6.2        glue_1.4.1         beeswarm_0.2.3     productplots_0.1.1
-    ## [57] hms_0.5.3          yaml_2.2.1         colorspace_1.4-1   rvest_0.3.5       
-    ## [61] plotly_4.9.2.1     knitr_1.26         haven_2.2.0
+    ## [13] pillar_1.4.3       rlang_0.4.6        curl_4.3           lazyeval_0.2.2    
+    ## [17] readxl_1.3.1       rstudioapi_0.10    data.table_1.12.8  rmarkdown_2.0     
+    ## [21] labeling_0.3       htmlwidgets_1.5.1  munsell_0.5.0      vipor_0.4.5       
+    ## [25] compiler_3.6.2     modelr_0.1.5       xfun_0.12          pkgconfig_2.0.3   
+    ## [29] htmltools_0.4.0    tidyselect_1.1.0   fansi_0.4.1        viridisLite_0.3.0 
+    ## [33] crayon_1.3.4       dbplyr_1.4.2       withr_2.1.2        MASS_7.3-51.4     
+    ## [37] grid_3.6.2         nlme_3.1-142       jsonlite_1.6.1     gtable_0.3.0      
+    ## [41] lifecycle_0.2.0    DBI_1.1.0          git2r_0.26.1       magrittr_1.5      
+    ## [45] scales_1.1.0       cli_2.0.1          stringi_1.4.6      farver_2.0.3      
+    ## [49] fs_1.3.1           xml2_1.2.2         ellipsis_0.3.0     generics_0.0.2    
+    ## [53] vctrs_0.3.1        tools_3.6.2        glue_1.4.1         beeswarm_0.2.3    
+    ## [57] productplots_0.1.1 hms_0.5.3          yaml_2.2.1         colorspace_1.4-1  
+    ## [61] rvest_0.3.5        plotly_4.9.2.1     knitr_1.26         haven_2.2.0

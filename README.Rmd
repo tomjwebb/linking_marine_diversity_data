@@ -14,7 +14,7 @@ This is the code for reproducing the figures and analysis reported in Webb & Van
 
 First, load required packages (see bottom of this script for installed versions used):
 ```{r, message = FALSE}
-library(tidyverse) # For data manipulation and plotting
+library(tidyverse) # For reading, manipulating and plotting data
 library(pscl) # For fitting hurdle models
 library(broom) # For tidying model outputs
 library(patchwork) # For multi-panel figure layouts
@@ -22,15 +22,24 @@ library(ggmosaic) # For mosaic plots
 library(ggbeeswarm) # For beeswarm-style plots
 ```
 
+The dataset used in this analysis is available under a Creative Commons Attribution 4.0 International License in the Marine Data Archive (MDA). The preferred route to access the data is via IMIS (Integrated Marine Inforamtion System), which provides full meta-data. The IMIS record for our dataset is here: https://doi.org/10.14284/417 The code below uses the direct link to MDA to download and unzip the two component csv files into the data folder of this project directory: the full dataset and a second csv which provides a full description of each variable.
 
-Read in the main dataset - **NB add link to DOI version when available**
+```{r, message = FALSE, warning = FALSE}
+# download zipped data from MDA
+curl::curl_download(url = "https://mda.vliz.be/download.php?file=VLIZ_00000106_5f1ff6c0cf0a1110164358",
+                    destfile = "data/worms_animals_links.zip")
+# unzip
+unzip("data/worms_animals_links.zip", exdir = "data")
+```
+
+The main dataset can now be read in:
 ```{r, message = FALSE, warning = FALSE}
 worms_valid <- readr::read_csv("data/worms_animals_links.csv")
 ```
 
 This contains `r nrow(worms_valid)` observations of `r ncol(worms_valid)` variables. Each observation is a valid marine animal species. Variables are described fully in the meta data here:
 ```{r, message = FALSE, warning = FALSE}
-worms_valid_meta <- readr::read_csv("data/worms_animals_links_meta.csv")
+worms_valid_meta <- readr::read_csv("data/meta.csv")
 ```
 For each variable, this gives its class (`class`), the number of non-NA observations (`n_obs`), the number of missing (NA) observations (`n_miss`), the percent missing observations (`pct_miss`), a description of the variables (`Description`), and relevant notes (`Notes`). For info: the missing value scores were generated using `naniar::miss_var_summary`.
 
