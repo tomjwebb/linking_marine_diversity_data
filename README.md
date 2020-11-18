@@ -5,7 +5,7 @@
 
 This is the code for reproducing the figures and analysis reported in
 Webb & Vanhoorne *Linking dimensions of data on global marine animal
-diversity*, Phil Trans R Soc B, doi: 10.1098/rstb.2019.0445
+diversity*, Phil Trans R Soc B, https://doi.org/10.1098/rstb.2019.0445
 
 First, load required packages (see bottom of this script for installed
 versions used):
